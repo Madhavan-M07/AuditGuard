@@ -23,6 +23,8 @@ interface AuditReport {
   findings: Finding[];
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 export default function AuditDashboard() {
   const [file, setFile] = useState<File | null>(null);
   const [documentId, setDocumentId] = useState<string>("");
@@ -43,7 +45,7 @@ export default function AuditDashboard() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/documents/upload", {
+      const res = await fetch(`${API_BASE_URL}/api/v1/documents/upload`, {
         method: "POST",
         body: formData,
       });
@@ -65,7 +67,7 @@ export default function AuditDashboard() {
     const policyList = policies.split("\n").filter((p) => p.trim().length > 0);
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/audit/run", {
+      const res = await fetch(`${API_BASE_URL}/api/v1/audit/run`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ document_id: documentId, policies: policyList }),
