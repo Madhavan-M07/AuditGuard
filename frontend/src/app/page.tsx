@@ -109,7 +109,7 @@ export default function AuditDashboard() {
   const [copiedAll, setCopiedAll] = useState<boolean>(false);
   const [filterStatus, setFilterStatus] = useState<string>("ALL");
   const [policies, setPolicies] = useState<string>(POLICY_PRESETS.enterprise);
-  const [isPreviewMode, setIsPreviewMode] = useState<boolean>(true);
+  const [isPreviewMode, setIsPreviewMode] = useState<boolean>(false);
 
   const resultsRef = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
@@ -227,40 +227,40 @@ export default function AuditDashboard() {
 
   return (
     <div className="min-h-screen bg-[#090d16] text-slate-100 font-sans selection:bg-indigo-600 selection:text-white">
-      {/* Enterprise Institutional Header */}
-      <header className="border-b border-slate-800/80 bg-[#090d16]/90 backdrop-blur-md sticky top-0 z-50 px-6 py-3.5">
+      {/* Enterprise White Header */}
+      <header className="border-b border-slate-200 bg-white sticky top-0 z-50 px-6 py-3.5 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-slate-900 border border-slate-700/80 rounded-lg shadow-inner">
-              <ShieldAlert className="w-5 h-5 text-indigo-400" />
+            <div className="p-2 bg-indigo-50 border border-indigo-200 rounded-lg shadow-sm">
+              <ShieldAlert className="w-5 h-5 text-indigo-600" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-base tracking-tight text-white uppercase">AuditGuard</span>
-                <span className="text-[10px] font-mono tracking-wider bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded">
+              <div className="flex items-center gap-2.5">
+                <span className="font-bold text-base tracking-tight text-slate-900 uppercase">AuditGuard</span>
+                <span className="text-[10px] font-mono tracking-wider bg-slate-100 text-slate-700 border border-slate-200 px-2 py-0.5 rounded font-semibold">
                   v1.2 · Enterprise
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">Autonomous Contract Compliance &amp; Redline Engine</p>
+              <p className="text-[11px] text-slate-500 font-medium">Autonomous Contract Compliance &amp; Redline Engine</p>
             </div>
           </div>
 
           <div className="flex items-center gap-4 text-xs">
             <a
               href="#concept"
-              className="text-slate-400 hover:text-slate-200 transition font-medium hidden md:inline-block"
+              className="text-slate-600 hover:text-slate-900 transition font-medium hidden md:inline-block"
             >
               Architecture &amp; Methodology
             </a>
             <a
               href="#workspace"
-              className="text-slate-400 hover:text-slate-200 transition font-medium hidden md:inline-block"
+              className="text-slate-600 hover:text-slate-900 transition font-medium hidden md:inline-block"
             >
               Audit Workbench
             </a>
-            <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-md">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="font-mono text-[11px] text-slate-300">pgvector + LangGraph Online</span>
+            <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="font-mono text-[11px] text-slate-700 font-medium">pgvector + LangGraph Online</span>
             </div>
           </div>
         </div>
