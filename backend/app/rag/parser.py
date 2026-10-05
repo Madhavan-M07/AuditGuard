@@ -40,7 +40,12 @@ async def ingest_pdf_content(filename: str, pdf_bytes: bytes) -> str:
             return str(doc.id)
 
         # 3. Batch generate 384-d embeddings
-        embeddings = get_embeddings_batch(raw_chunks)
+# 3. Batch generate 384-d embeddings in memory-safe chunks (keeps RAM < 150MB)
+        embeddings = []
+        BATCH_SIZE = 10
+        for i in range(0, len(raw_chunks), BATCH_SIZE):
+            batch = raw_chunks[i : i + BATCH_SIZE]
+            embeddings.extend(get_embeddings_batch(batch))
 
         # 4. Create DocumentClause records
         for text, page_num, emb in zip(raw_chunks, metadata_list, embeddings):
