@@ -56,7 +56,7 @@ export default function AuditDashboard() {
         alert(data.detail || "Failed to upload document");
       }
     } catch (err) {
-      alert("Error connecting to backend API at localhost:8000");
+      alert("Network error connecting to backend API. Please check your connection and try again.");
     } finally {
       setIsUploading(false);
     }
@@ -79,7 +79,7 @@ export default function AuditDashboard() {
         alert(data.detail || "Audit execution failed");
       }
     } catch (err) {
-      alert("Error calling audit agent API");
+      alert("Network error calling audit agent API. Please try again.");
     } finally {
       setIsAuditing(false);
     }
