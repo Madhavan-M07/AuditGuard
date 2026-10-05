@@ -143,9 +143,9 @@ export default function AuditDashboard() {
   const handleLoadSampleContract = async () => {
     try {
       setIsUploading(true);
-      const res = await fetch("/sample_vendor_contract.pdf");
+      const res = await fetch("/Salesforce_MSA.pdf");
       const blob = await res.blob();
-      const sampleFile = new File([blob], "sample_vendor_contract.pdf", {
+      const sampleFile = new File([blob], "Salesforce_MSA.pdf", {
         type: "application/pdf",
       });
       setFile(sampleFile);
@@ -330,22 +330,22 @@ export default function AuditDashboard() {
               <FileCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-semibold text-white">Pre-Loaded Benchmark Agreement Available</div>
+              <div className="text-xs font-semibold text-white">Pre-Loaded Benchmark: Salesforce Master Services Agreement (MSA)</div>
               <div className="text-[11px] text-slate-400">
-                Test with our deliberate 3-flaw enterprise test suite (unencrypted backups, 45-day notice, $100 liability cap).
+                Evaluate real 17-page enterprise vendor terms: Section 11 (Limitation of Liability), security safeguards, and breach notification.
               </div>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto justify-end">
             <a
-              href="/sample_vendor_contract.pdf"
+              href="/Salesforce_MSA.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg transition border border-slate-700 flex items-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5" />
-              Download PDF
+              Download Salesforce MSA
             </a>
             <button
               onClick={handleLoadSampleContract}
@@ -353,7 +353,7 @@ export default function AuditDashboard() {
               className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg transition flex items-center gap-1.5 shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              {isUploading ? "Indexing..." : "Load & Index Sample"}
+              {isUploading ? "Indexing..." : "Load & Index Salesforce MSA"}
             </button>
           </div>
         </div>
