@@ -1,0 +1,23 @@
+# Web Framework & Validation
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+
+# Database & Vector Store
+sqlalchemy[asyncio]>=2.0.32
+asyncpg>=0.29.0
+pgvector>=0.3.2
+
+# Agent & LLM Orchestration
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+
+# Ingestion & Embeddings
+fastembed>=0.3.6
+pypdf>=5.0.0
+rank-bm25>=0.2.2
+
+# Utilities
+python-dotenv>=1.0.1
