@@ -9,12 +9,29 @@ from app.rag.retriever import search_clauses
 from app.schemas.audit import AuditReport, ClauseFinding, ComplianceStatus, RiskLevel
 
 # 1. Initialize Gemini LLM
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+primary_llm = ChatGoogleGenerativeAI(
+    model="gemini-3.5-flash-lite",
     google_api_key=settings.GEMINI_API_KEY.strip(),
     temperature=0.1,
-    max_retries=3
+    max_retries=2
 )
+
+fallback_llm_1 = ChatGoogleGenerativeAI(
+    model="gemini-3.5-flash",
+    google_api_key=settings.GEMINI_API_KEY.strip(),
+    temperature=0.1,
+    max_retries=2
+)
+
+fallback_llm_2 = ChatGoogleGenerativeAI(
+    model="gemma-4-26b-a4b-it",
+    google_api_key=settings.GEMINI_API_KEY.strip(),
+    temperature=0.1,
+    max_retries=2
+)
+
+# High-Availability Cascading Router (100% Uptime):
+llm = primary_llm.with_fallbacks([fallback_llm_1, fallback_llm_2])
 
 # 2. Define the Agent's Shared State
 class AgentState(TypedDict):
@@ -59,7 +76,13 @@ Only output the JSON object.
         ])
         
         # Clean response and parse JSON
-        clean_text = response.content.replace("```json", "").replace("```", "").strip()
+        # Extract text safely whether content is str or list of parts
+        if isinstance(response.content, list):
+            raw_content = "".join([p if isinstance(p, str) else getattr(p, "text", p.get("text", "") if isinstance(p, dict) else str(p)) for p in response.content])
+        else:
+            raw_content = str(response.content)
+
+        clean_text = raw_content.replace("```json", "").replace("```", "").strip()
         try:
             finding_data = json.loads(clean_text)
             findings.append(finding_data)
@@ -116,7 +139,7 @@ if __name__ == "__main__":
     import asyncio
     
     async def run_test_audit():
-        print("🤖 Running LangGraph Audit Agent...")
+        print("Running LangGraph Audit Agent...")
         sample_policies = [
             "Candidate must have demonstrated experience in AI or Machine Learning.",
             "Candidate must have proficiency with Python and backend frameworks."
@@ -129,7 +152,7 @@ if __name__ == "__main__":
             "final_report": {}
         }
         result = await audit_agent.ainvoke(state_input)
-        print("\n📊 --- FINAL AUDIT REPORT ---")
+        print("\n--- FINAL AUDIT REPORT ---")
         print(json.dumps(result["final_report"], indent=2))
 
     asyncio.run(run_test_audit())
