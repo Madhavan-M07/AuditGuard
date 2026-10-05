@@ -226,9 +226,9 @@ export default function AuditDashboard() {
     : [];
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 font-sans selection:bg-indigo-600 selection:text-white">
+    <div className="min-h-screen bg-[#090d16] text-slate-100 font-sans selection:bg-indigo-600 selection:text-white w-full overflow-x-hidden">
       {/* Enterprise White Header */}
-      <header className="border-b border-slate-200 bg-white sticky top-0 z-50 px-6 py-3.5 shadow-sm">
+      <header className="border-b border-slate-200 bg-white sticky top-0 z-50 px-4 sm:px-6 py-2.5 sm:py-3.5 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-indigo-50 border border-indigo-200 rounded-lg shadow-sm">
@@ -241,7 +241,7 @@ export default function AuditDashboard() {
                   v1.2 · Enterprise
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 font-medium">Autonomous Contract Compliance &amp; Redline Engine</p>
+              <p className="hidden sm:block text-[11px] text-slate-500 font-medium">Autonomous Contract Compliance &amp; Redline Engine</p>
             </div>
           </div>
 
@@ -260,14 +260,14 @@ export default function AuditDashboard() {
             </a>
             <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="font-mono text-[11px] text-slate-700 font-medium">pgvector + LangGraph Online</span>
+              <span className="hidden sm:inline font-mono text-[11px] text-slate-700 font-medium">pgvector + LangGraph Online</span><span className="sm:hidden font-mono text-[10px] text-slate-700 font-medium">Live</span>
             </div>
           </div>
         </div>
       </header>
 
       {/* Concept & Methodology Section */}
-      <section id="concept" className="max-w-7xl mx-auto px-6 pt-10 pb-8">
+      <section id="concept" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-6 sm:pb-8">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-medium text-indigo-400 uppercase tracking-widest mb-3">
             <span>Enterprise Compliance Operations</span>
@@ -275,7 +275,7 @@ export default function AuditDashboard() {
             <span>Deterministic RAG</span>
           </div>
 
-          <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-white leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
             Autonomous Contract Auditing &amp; Clause Verification
           </h1>
 
@@ -324,7 +324,7 @@ export default function AuditDashboard() {
         </div>
 
         {/* Benchmark Contract Quick-Action Strip */}
-        <div className="mt-6 bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-6 bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 sm:p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-indigo-950/60 border border-indigo-500/20 rounded-lg text-indigo-400 shrink-0">
               <FileCheck className="w-5 h-5" />
@@ -337,12 +337,12 @@ export default function AuditDashboard() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto justify-end">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto shrink-0">
             <a
               href="/Salesforce_MSA.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg transition border border-slate-700 flex items-center gap-1.5"
+              className="px-3 py-2 sm:py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg transition border border-slate-700 flex items-center justify-center gap-1.5 w-full sm:w-auto"
             >
               <Download className="w-3.5 h-3.5" />
               Download Salesforce MSA
@@ -350,7 +350,7 @@ export default function AuditDashboard() {
             <button
               onClick={handleLoadSampleContract}
               disabled={isUploading || isAuditing}
-              className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg transition flex items-center gap-1.5 shadow-sm"
+              className="px-3.5 py-2 sm:py-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg transition flex items-center justify-center gap-1.5 shadow-sm w-full sm:w-auto"
             >
               <Sparkles className="w-3.5 h-3.5" />
               {isUploading ? "Indexing..." : "Load & Index Salesforce MSA"}
@@ -360,8 +360,8 @@ export default function AuditDashboard() {
       </section>
 
       {/* Main Workbench Layout */}
-      <section ref={workspaceRef} id="workspace" className="max-w-7xl mx-auto px-6 pb-20 pt-4">
-        <div className="flex items-center justify-between mb-5 border-t border-slate-800 pt-6">
+      <section ref={workspaceRef} id="workspace" className="max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 pt-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 border-t border-slate-800 pt-6">
           <div>
             <h2 className="text-lg font-bold text-white tracking-tight">Audit Workbench</h2>
             <p className="text-xs text-slate-400">Configure target agreement and evaluate compliance rules</p>
@@ -438,7 +438,7 @@ export default function AuditDashboard() {
               {/* Policy Preset Selectors */}
               <div className="space-y-1.5">
                 <div className="text-[11px] font-mono text-slate-400 uppercase">Framework Presets:</div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   <button
                     onClick={() => setPolicies(POLICY_PRESETS.enterprise)}
                     className="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 text-[11px] rounded text-slate-300 transition border border-slate-700 text-center truncate font-medium"
@@ -496,9 +496,9 @@ export default function AuditDashboard() {
               <div className="space-y-4">
                 {/* Executive Risk Dossier Header */}
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 w-full sm:w-auto justify-end pt-1 sm:pt-0">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                           Executive Risk Assessment
                         </span>
@@ -512,7 +512,7 @@ export default function AuditDashboard() {
                     </div>
 
                     <div
-                      className={`px-4 py-3 rounded-xl border text-center shrink-0 ${
+                      className={`px-4 py-3 rounded-xl border text-center self-stretch sm:self-auto shrink-0 ${
                         activeReport.overall_risk_score > 50
                           ? "bg-rose-950/30 border-rose-500/30 text-rose-400"
                           : "bg-emerald-950/30 border-emerald-500/30 text-emerald-400"
@@ -526,7 +526,7 @@ export default function AuditDashboard() {
                   </div>
 
                   {/* Filter and Action Bar */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 mt-4 pt-4 border-t border-slate-800">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 mt-4 pt-4 border-t border-slate-800">
                     <div className="flex items-center gap-1.5">
                       <Filter className="w-3.5 h-3.5 text-slate-400 mr-1" />
                       <button
@@ -563,7 +563,7 @@ export default function AuditDashboard() {
                       </button>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 w-full sm:w-auto justify-end pt-1 sm:pt-0">
                       <button
                         onClick={() => handleCopyAllRedlines(activeReport.findings)}
                         className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] rounded font-medium transition flex items-center gap-1 border border-slate-700"
@@ -613,12 +613,12 @@ export default function AuditDashboard() {
                       </div>
 
                       {/* Contractual Clause Snippet */}
-                      <div className="bg-slate-950 border border-slate-800/80 p-3 rounded-lg text-xs text-slate-400 font-serif italic leading-relaxed">
+                      <div className="bg-slate-950 border border-slate-800/80 p-3 rounded-lg text-xs text-slate-400 font-serif italic leading-relaxed break-words">
                         &quot;{f.cited_clause}&quot;
                       </div>
 
                       {/* Legal Reasoning */}
-                      <p className="text-xs text-slate-300 leading-relaxed">{f.analysis}</p>
+                      <p className="text-xs text-slate-300 leading-relaxed break-words">{f.analysis}</p>
 
                       {/* Proposed Redline */}
                       {f.recommended_redline && (
@@ -639,7 +639,7 @@ export default function AuditDashboard() {
                               {copiedIdx === idx ? "Copied" : "Copy"}
                             </button>
                           </div>
-                          <p className="text-xs font-mono text-amber-200/90 leading-relaxed bg-black/40 p-2.5 rounded border border-amber-900/30">
+                          <p className="text-xs font-mono text-amber-200/90 leading-relaxed bg-black/40 p-2.5 rounded border border-amber-900/30 break-words whitespace-pre-wrap overflow-x-auto">
                             {f.recommended_redline}
                           </p>
                         </div>
